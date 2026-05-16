@@ -731,6 +731,68 @@ a { color: var(--primary); text-decoration: none; }
   text-align: center; margin-top: 2rem;
 }
 
+/* ===== Other Projects (di halaman project) ===== */
+.other-projects {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.other-projects h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.other-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.other-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-top: 4px solid var(--primary);
+}
+.other-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.other-thumb { font-size: 2.5rem; }
+.other-card h4 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+.other-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.other-card .badge-small {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.other-card .other-arrow {
+  margin-top: 0.4rem;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .biodata-grid {
