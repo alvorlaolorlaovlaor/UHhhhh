@@ -8,12 +8,12 @@
 </head>
 <body class="project-page">
   <script>
-    // Deteksi apakah halaman dimuat dalam iframe → sembunyikan UI overlay
+
     if (window.self !== window.top) {
       document.documentElement.classList.add('is-iframe');
       document.addEventListener('DOMContentLoaded', () => document.body.classList.add('is-iframe'));
     }
-  </script>
+</script>
   <div id="scrollProgress" class="scroll-progress"></div>
   <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">
     <span class="theme-icon">&#9790;</span>
@@ -103,7 +103,7 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
-    // Tema persist
+
     (function () {
       let saved = null;
       try { saved = localStorage.getItem('site-theme'); } catch (e) {}
@@ -126,7 +126,6 @@
       });
     }
 
-    // Scroll progress
     window.addEventListener('scroll', () => {
       const h = document.documentElement;
       const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
@@ -136,11 +135,6 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ==========================================================
-       Iframe pratinjau: skala mengikuti lebar kontainer.
-       Simulasi viewport 1280px lebar; tinggi 1700px (cukup untuk
-       menampilkan hero + 2-3 section pertama halaman project).
-       ========================================================== */
     const PREVIEW_W = 1280;
     const PREVIEW_H = 1700;
     function fitPreview() {
@@ -168,6 +162,6 @@
     document.addEventListener('DOMContentLoaded', fitPreview);
 
     console.log('%c[Project 1] Halaman dimuat', 'color:#4f46e5;font-weight:bold;');
-  </script>
+</script>
 </body>
 </html>

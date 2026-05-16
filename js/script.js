@@ -1,7 +1,4 @@
-/* ============================================================
-   Website Profil Siswa - script.js
-   Pure JavaScript: interaksi, animasi, dan tema.
-   ============================================================ */
+
 
 console.log(
   '%c Halo dari Console! %c\n' +
@@ -12,9 +9,6 @@ console.log(
   'color:#475569;font-size:12px;'
 );
 
-/* =================================================
-   1. LOADER - sembunyikan setelah halaman siap
-   ================================================= */
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   if (loader) {
@@ -23,9 +17,6 @@ window.addEventListener('load', () => {
   showToast('Halaman berhasil dimuat ✓', 'success');
 });
 
-/* =================================================
-   2. TEMA TERANG / GELAP
-   ================================================= */
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
 
@@ -52,9 +43,6 @@ if (themeToggle) {
   });
 }
 
-/* =================================================
-   3. NAVBAR - burger menu + active link + shadow
-   ================================================= */
 const navBurger = document.getElementById('navBurger');
 const navMenu = document.getElementById('navMenu');
 const navbar = document.getElementById('navbar');
@@ -76,9 +64,6 @@ window.addEventListener('scroll', () => {
   if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 10);
 });
 
-/* =================================================
-   4. SCROLL PROGRESS BAR + BACK TO TOP
-   ================================================= */
 const progressBar = document.getElementById('scrollProgress');
 const backToTop = document.getElementById('backToTop');
 
@@ -97,9 +82,6 @@ if (backToTop) {
   });
 }
 
-/* =================================================
-   5. ACTIVE NAV LINK saat scroll
-   ================================================= */
 const sections = document.querySelectorAll('section[id], header[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 
@@ -115,9 +97,6 @@ function updateActiveLink() {
 }
 window.addEventListener('scroll', updateActiveLink, { passive: true });
 
-/* =================================================
-   6. REVEAL ON SCROLL (IntersectionObserver)
-   ================================================= */
 const reveals = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && reveals.length) {
   const io = new IntersectionObserver((entries) => {
@@ -133,9 +112,6 @@ if ('IntersectionObserver' in window && reveals.length) {
   reveals.forEach(r => r.classList.add('visible'));
 }
 
-/* =================================================
-   7. LIVE CLOCK + UCAPAN BERDASARKAN WAKTU
-   ================================================= */
 const clockEl = document.getElementById('liveClock');
 const greetEl = document.getElementById('greeting');
 
@@ -160,9 +136,6 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
-/* =================================================
-   8. TYPING EFFECT pada judul header
-   ================================================= */
 const typedEl = document.getElementById('typedTitle');
 if (typedEl) {
   const phrases = [
@@ -192,9 +165,6 @@ if (typedEl) {
   typeLoop();
 }
 
-/* =================================================
-   9. UPLOAD FOTO (preview lokal, tidak diunggah)
-   ================================================= */
 const uploadBtn = document.getElementById('uploadBtn');
 const photoInput = document.getElementById('photoInput');
 const photoFrame = document.getElementById('photoFrame');
@@ -218,9 +188,6 @@ if (uploadBtn && photoInput && photoFrame) {
   });
 }
 
-/* =================================================
-   10. TABEL NILAI - kategori, statistik, search, sort
-   ================================================= */
 const tableBody = document.querySelector('#tableNilai tbody');
 
 function classifyNilai(n) {
@@ -276,7 +243,6 @@ function updateStats() {
   animateCount(document.getElementById('statCount'), arr.length);
 }
 
-// trigger animasi statistik saat section nilai terlihat
 const nilaiSection = document.getElementById('nilai');
 if (nilaiSection && 'IntersectionObserver' in window) {
   const sObs = new IntersectionObserver((entries) => {
@@ -292,7 +258,6 @@ if (nilaiSection && 'IntersectionObserver' in window) {
   updateStats();
 }
 
-// search
 const searchInput = document.getElementById('searchNilai');
 if (searchInput && tableBody) {
   searchInput.addEventListener('input', () => {
@@ -304,7 +269,6 @@ if (searchInput && tableBody) {
   });
 }
 
-// sort
 const sortSelect = document.getElementById('sortNilai');
 if (sortSelect && tableBody) {
   sortSelect.addEventListener('change', () => {
@@ -327,9 +291,6 @@ if (sortSelect && tableBody) {
   });
 }
 
-/* =================================================
-   11. CONTACT FORM dengan localStorage
-   ================================================= */
 const cf = document.getElementById('contactForm');
 const cfName = document.getElementById('cfName');
 const cfMsg = document.getElementById('cfMsg');
@@ -394,9 +355,6 @@ if (cf) {
   });
 }
 
-/* =================================================
-   13. TOAST NOTIFICATION
-   ================================================= */
 function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   if (!container) return;
@@ -407,15 +365,9 @@ function showToast(message, type = 'info') {
   setTimeout(() => t.remove(), 3000);
 }
 
-/* =================================================
-   14. FOOTER YEAR
-   ================================================= */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* =================================================
-   15. EASTER EGG - KONAMI CODE
-   ================================================= */
 (function konami() {
   const seq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
                'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -452,9 +404,6 @@ function triggerConfetti() {
   }
 }
 
-/* =================================================
-   16. EFEK TILT / 3D ringan pada project card
-   ================================================= */
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -469,11 +418,8 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-/* =================================================
-   17. KEYBOARD SHORTCUTS
-   ================================================= */
 document.addEventListener('keydown', (e) => {
-  // Jangan trigger saat fokus di input
+
   const tag = (e.target.tagName || '').toLowerCase();
   if (tag === 'input' || tag === 'textarea') return;
   if (e.key === 't' || e.key === 'T') {
@@ -483,9 +429,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'End') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 });
 
-/* =================================================
-   18. ALERT SAMBUTAN (sekali per kunjungan)
-   ================================================= */
 (function welcomeAlert() {
   try {
     if (!sessionStorage.getItem('welcomed')) {
