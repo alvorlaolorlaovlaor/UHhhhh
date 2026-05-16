@@ -139,7 +139,7 @@ setInterval(tick, 1000);
 const typedEl = document.getElementById('typedTitle');
 if (typedEl) {
   const phrases = [
-    '[Judul Website]',
+    'Website Report Siswa',
     'Profil Siswa Interaktif',
     'Selamat Datang!'
   ];
