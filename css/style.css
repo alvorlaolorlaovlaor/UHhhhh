@@ -743,7 +743,7 @@ a { color: var(--primary); text-decoration: none; }
 }
 .other-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 .other-card {
@@ -762,28 +762,44 @@ a { color: var(--primary); text-decoration: none; }
 .other-preview {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
   background: var(--bg);
   overflow: hidden;
   border-bottom: 1px solid var(--border);
+  /* height diatur via JS (fitPreview) sesuai skala iframe */
+  min-height: 200px;
 }
 .other-preview iframe {
   position: absolute;
   top: 0; left: 0;
-  width: 250%;
-  height: 250%;
   border: 0;
-  transform: scale(0.4);
   transform-origin: 0 0;
   pointer-events: none;
-  background: #fff;
+  background: var(--bg-alt);
+  /* width/height/transform diatur via JS */
 }
 .other-preview::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.05));
+  background: linear-gradient(180deg, transparent 75%, rgba(0,0,0,0.08));
   pointer-events: none;
 }
+.other-preview-loading {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  z-index: 1;
+}
+.other-preview.ready .other-preview-loading { display: none; }
+
+/* Hide chrome elements ketika halaman dimuat di dalam iframe pratinjau */
+.is-iframe .theme-toggle,
+.is-iframe .scroll-progress,
+.is-iframe .back-to-top,
+.is-iframe #toastContainer,
+.is-iframe #loader,
+.is-iframe .navbar { display: none !important; }
+.is-iframe body { overflow: hidden; }
 .other-info {
   padding: 1rem 1.25rem;
   display: flex; flex-direction: column;

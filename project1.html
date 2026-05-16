@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="project-page">
+  <script>
+    // Deteksi apakah halaman dimuat dalam iframe → sembunyikan UI overlay
+    if (window.self !== window.top) {
+      document.documentElement.classList.add('is-iframe');
+      document.addEventListener('DOMContentLoaded', () => document.body.classList.add('is-iframe'));
+    }
+  </script>
   <div id="scrollProgress" class="scroll-progress"></div>
   <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">
     <span class="theme-icon">&#9790;</span>
@@ -55,7 +62,8 @@
         <div class="other-grid">
           <div class="other-card">
             <div class="other-preview">
-              <iframe src="project2.html" title="Pratinjau Project 2" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              <div class="other-preview-loading">Memuat pratinjau...</div>
+              <iframe src="project2.html" title="Pratinjau Project 2" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
             </div>
             <div class="other-info">
               <span class="badge-small">PROJECT 02</span>
@@ -66,7 +74,8 @@
           </div>
           <div class="other-card">
             <div class="other-preview">
-              <iframe src="project3.html" title="Pratinjau Project 3" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+              <div class="other-preview-loading">Memuat pratinjau...</div>
+              <iframe src="project3.html" title="Pratinjau Project 3" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
             </div>
             <div class="other-info">
               <span class="badge-small">PROJECT 03</span>
@@ -104,23 +113,58 @@
       if (icon) icon.innerHTML = theme === 'dark' ? '&#9728;' : '&#9790;';
     })();
 
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      const cur = document.documentElement.getAttribute('data-theme');
-      const next = cur === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      const icon = document.querySelector('.theme-icon');
-      if (icon) icon.innerHTML = next === 'dark' ? '&#9728;' : '&#9790;';
-      try { localStorage.setItem('site-theme', next); } catch (e) {}
-    });
+    const ttBtn = document.getElementById('themeToggle');
+    if (ttBtn) {
+      ttBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        const icon = document.querySelector('.theme-icon');
+        if (icon) icon.innerHTML = next === 'dark' ? '&#9728;' : '&#9790;';
+        try { localStorage.setItem('site-theme', next); } catch (e) {}
+      });
+    }
 
     // Scroll progress
     window.addEventListener('scroll', () => {
       const h = document.documentElement;
       const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      document.getElementById('scrollProgress').style.width = (pct || 0) + '%';
+      const sp = document.getElementById('scrollProgress');
+      if (sp) sp.style.width = (pct || 0) + '%';
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ==========================================================
+       Iframe pratinjau: skala mengikuti lebar kontainer.
+       Simulasi viewport 1280px lebar; tinggi 1700px (cukup untuk
+       menampilkan hero + 2-3 section pertama halaman project).
+       ========================================================== */
+    const PREVIEW_W = 1280;
+    const PREVIEW_H = 1700;
+    function fitPreview() {
+      document.querySelectorAll('.other-preview').forEach(box => {
+        const iframe = box.querySelector('iframe');
+        if (!iframe) return;
+        const cw = box.clientWidth;
+        if (!cw) return;
+        const scale = cw / PREVIEW_W;
+        iframe.style.width = PREVIEW_W + 'px';
+        iframe.style.height = PREVIEW_H + 'px';
+        iframe.style.transform = 'scale(' + scale + ')';
+        box.style.height = (PREVIEW_H * scale) + 'px';
+      });
+    }
+    function markReady(iframe) {
+      const box = iframe.closest('.other-preview');
+      if (box) box.classList.add('ready');
+    }
+    document.querySelectorAll('.other-preview iframe').forEach(f => {
+      f.addEventListener('load', () => markReady(f));
+    });
+    window.addEventListener('load', fitPreview);
+    window.addEventListener('resize', fitPreview);
+    document.addEventListener('DOMContentLoaded', fitPreview);
 
     console.log('%c[Project 1] Halaman dimuat', 'color:#4f46e5;font-weight:bold;');
   </script>
