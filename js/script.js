@@ -328,50 +328,7 @@ if (sortSelect && tableBody) {
 }
 
 /* =================================================
-   11. PROJECT MODAL (pratinjau)
-   ================================================= */
-const modal = document.getElementById('projectModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalDesc = document.getElementById('modalDesc');
-const modalLink = document.getElementById('modalLink');
-
-function openModal(projectNum) {
-  const card = document.querySelector(`.project-card[data-project="${projectNum}"]`);
-  if (!card || !modal) return;
-  const title = card.querySelector('h3').textContent;
-  const desc = card.querySelector('p').textContent;
-  modalTitle.textContent = title;
-  modalDesc.textContent = desc;
-  modalLink.href = `project${projectNum}.html`;
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden', 'false');
-  console.log('[Modal] buka pratinjau project', projectNum);
-}
-
-function closeModal() {
-  if (!modal) return;
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden', 'true');
-}
-
-document.querySelectorAll('.btn-preview').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openModal(btn.dataset.target);
-  });
-});
-
-if (modal) {
-  modal.querySelectorAll('[data-close-modal]').forEach(el => {
-    el.addEventListener('click', closeModal);
-  });
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
-});
-
-/* =================================================
-   12. CONTACT FORM dengan localStorage
+   11. CONTACT FORM dengan localStorage
    ================================================= */
 const cf = document.getElementById('contactForm');
 const cfName = document.getElementById('cfName');

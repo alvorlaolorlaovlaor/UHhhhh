@@ -743,39 +743,53 @@ a { color: var(--primary); text-decoration: none; }
 }
 .other-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 .other-card {
   background: var(--surface);
   border-radius: var(--radius);
-  padding: 1.25rem;
   box-shadow: var(--shadow);
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
+  overflow: hidden;
   display: flex; flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
   transition: transform var(--transition), box-shadow var(--transition);
   border-top: 4px solid var(--primary);
 }
 .other-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
 }
-.other-thumb { font-size: 2.5rem; }
-.other-card h4 {
-  margin: 0;
-  color: var(--primary);
-  font-size: 1.05rem;
+.other-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
 }
-.other-card p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.other-preview iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 250%;
+  height: 250%;
+  border: 0;
+  transform: scale(0.4);
+  transform-origin: 0 0;
+  pointer-events: none;
+  background: #fff;
 }
-.other-card .badge-small {
+.other-preview::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.05));
+  pointer-events: none;
+}
+.other-info {
+  padding: 1rem 1.25rem;
+  display: flex; flex-direction: column;
+  gap: 0.3rem;
+}
+.other-info .badge-small {
   display: inline-block;
   background: var(--bg);
   border: 1px solid var(--border);
@@ -785,12 +799,21 @@ a { color: var(--primary); text-decoration: none; }
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 1px;
+  align-self: flex-start;
 }
-.other-card .other-arrow {
-  margin-top: 0.4rem;
+.other-info h4 {
+  margin: 0.25rem 0 0;
   color: var(--primary);
-  font-weight: 700;
+  font-size: 1.05rem;
+}
+.other-info p {
+  margin: 0;
+  color: var(--text-muted);
   font-size: 0.9rem;
+}
+.other-info .btn {
+  margin-top: 0.6rem;
+  align-self: flex-start;
 }
 
 /* ===== Responsive ===== */
