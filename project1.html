@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 1 - [Nama Project 1]</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="project-page">
+  <div id="scrollProgress" class="scroll-progress"></div>
+  <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">
+    <span class="theme-icon">&#9790;</span>
+  </button>
+
+  <header class="project-hero">
+    <div class="container">
+      <span class="badge">PROJECT 01</span>
+      <h1 class="placeholder">[Nama Project 1]</h1>
+      <p class="placeholder">[Tagline singkat tentang project 1]</p>
+    </div>
+  </header>
+
+  <main class="project-body">
+    <div class="container narrow">
+      <h2>Deskripsi Project</h2>
+      <p class="placeholder">
+        [Tuliskan deskripsi lengkap project 1 di sini. Jelaskan tujuan project,
+        masalah yang dipecahkan, dan target pengguna. Bagian ini bisa berisi
+        beberapa paragraf agar pembaca memahami konteks project secara utuh.]
+      </p>
+
+      <h2>Teknologi yang Digunakan</h2>
+      <ul class="feature-list">
+        <li><strong>HTML5</strong> &mdash; <span class="placeholder">[struktur halaman]</span></li>
+        <li><strong>CSS3</strong> &mdash; <span class="placeholder">[styling dan layout responsive]</span></li>
+        <li><strong>JavaScript</strong> &mdash; <span class="placeholder">[logika interaktif]</span></li>
+      </ul>
+
+      <h2>Fitur Utama</h2>
+      <ul class="feature-list">
+        <li class="placeholder">[Fitur 1 dari project ini]</li>
+        <li class="placeholder">[Fitur 2 dari project ini]</li>
+        <li class="placeholder">[Fitur 3 dari project ini]</li>
+      </ul>
+
+      <h2>Catatan Pengembangan</h2>
+      <p class="placeholder">
+        [Cerita singkat tentang tantangan, pembelajaran, atau hal menarik
+        yang ditemukan saat mengerjakan project ini.]
+      </p>
+
+      <div class="back-button-wrap">
+        <a href="index.html" class="btn btn-primary">&larr; Kembali ke Halaman Utama</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> <span class="placeholder">[Nama Siswa]</span></p>
+    </div>
+  </footer>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    // Tema persist
+    (function () {
+      let saved = null;
+      try { saved = localStorage.getItem('site-theme'); } catch (e) {}
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      const icon = document.querySelector('.theme-icon');
+      if (icon) icon.innerHTML = theme === 'dark' ? '&#9728;' : '&#9790;';
+    })();
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      const icon = document.querySelector('.theme-icon');
+      if (icon) icon.innerHTML = next === 'dark' ? '&#9728;' : '&#9790;';
+      try { localStorage.setItem('site-theme', next); } catch (e) {}
+    });
+
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      document.getElementById('scrollProgress').style.width = (pct || 0) + '%';
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    console.log('%c[Project 1] Halaman dimuat', 'color:#4f46e5;font-weight:bold;');
+  </script>
+</body>
+</html>

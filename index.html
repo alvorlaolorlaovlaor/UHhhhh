@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Judul Website] - Halaman Utama</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loader" class="loader">
+    <div class="loader-spinner"></div>
+    <p>Memuat halaman...</p>
+  </div>
+
+  <!-- Progress bar saat scroll -->
+  <div id="scrollProgress" class="scroll-progress"></div>
+
+  <!-- Tombol kembali ke atas -->
+  <button id="backToTop" class="back-to-top" aria-label="Kembali ke atas">&uarr;</button>
+
+  <!-- Toggle tema -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">
+    <span class="theme-icon">&#9790;</span>
+  </button>
+
+  <!-- Navigasi -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#header" class="nav-logo">[Logo]</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#header" class="nav-link active">Beranda</a></li>
+        <li><a href="#biodata" class="nav-link">Biodata</a></li>
+        <li><a href="#deskripsi" class="nav-link">Deskripsi</a></li>
+        <li><a href="#nilai" class="nav-link">Nilai</a></li>
+        <li><a href="#project" class="nav-link">Project</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-bg"></div>
+    <div class="container header-content">
+      <p class="header-clock" id="liveClock">--:--:--</p>
+      <p class="header-greeting" id="greeting">Selamat datang!</p>
+      <h1 class="header-title">
+        <span id="typedTitle"></span><span class="cursor">|</span>
+      </h1>
+      <p class="header-subject">Mata Pelajaran: <span class="placeholder">[Nama Mata Pelajaran]</span></p>
+      <p class="header-identity">
+        <span class="placeholder">[Nama Guru / NIM / NIS / Kelas]</span>
+      </p>
+      <a href="#biodata" class="btn btn-primary header-cta">Lihat Biodata &darr;</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Biodata -->
+    <section class="section reveal" id="biodata">
+      <div class="container">
+        <h2 class="section-title">Biodata Siswa</h2>
+        <p class="section-sub">Informasi singkat tentang diri saya.</p>
+        <div class="biodata-grid">
+          <div class="biodata-photo">
+            <div class="photo-frame" id="photoFrame">
+              <!-- Aspek rasio 3:4 -->
+              <div class="photo-placeholder">
+                <span>Foto 3:4</span>
+                <small>[Ganti dengan foto siswa]</small>
+              </div>
+            </div>
+            <button class="btn btn-ghost" id="uploadBtn">Unggah Foto</button>
+            <input type="file" id="photoInput" accept="image/*" hidden />
+          </div>
+          <ul class="biodata-list">
+            <li><strong>Nama Lengkap</strong><span class="placeholder">[Nama Lengkap Siswa]</span></li>
+            <li><strong>Umur</strong><span class="placeholder">[Umur] Tahun</span></li>
+            <li><strong>Universitas</strong><span class="placeholder">[Nama Universitas]</span></li>
+            <li><strong>Hobi</strong><span class="placeholder">[Hobi 1, Hobi 2, Hobi 3]</span></li>
+            <li><strong>Cita-cita</strong><span class="placeholder">[Cita-cita]</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deskripsi -->
+    <section class="section section-alt reveal" id="deskripsi">
+      <div class="container">
+        <h2 class="section-title">Deskripsi Singkat</h2>
+        <p class="section-sub">Sekilas tentang diri, minat, dan tujuan belajar saya.</p>
+        <div class="desc-grid">
+          <article class="desc-card">
+            <div class="desc-icon">&#128100;</div>
+            <h3>Diri Siswa</h3>
+            <p class="placeholder">[Deskripsi singkat tentang diri siswa, kepribadian, latar belakang, dan keunikan.]</p>
+          </article>
+          <article class="desc-card">
+            <div class="desc-icon">&#10024;</div>
+            <h3>Minat</h3>
+            <p class="placeholder">[Minat utama siswa, misalnya pemrograman, desain grafis, olahraga, atau bidang lain.]</p>
+          </article>
+          <article class="desc-card">
+            <div class="desc-icon">&#128218;</div>
+            <h3>Pengalaman Belajar</h3>
+            <p class="placeholder">[Pengalaman belajar yang pernah ditempuh, kursus, organisasi, atau pencapaian.]</p>
+          </article>
+          <article class="desc-card">
+            <div class="desc-icon">&#127919;</div>
+            <h3>Tujuan Belajar</h3>
+            <p class="placeholder">[Tujuan belajar jangka pendek dan jangka panjang yang ingin dicapai.]</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabel Nilai -->
+    <section class="section reveal" id="nilai">
+      <div class="container">
+        <h2 class="section-title">Tabel Nilai Ulangan</h2>
+        <p class="section-sub">Rekap nilai dari beberapa materi yang telah dipelajari.</p>
+
+        <div class="table-controls">
+          <input type="text" id="searchNilai" placeholder="Cari materi..." class="input" />
+          <select id="sortNilai" class="input">
+            <option value="default">Urutkan: Nomor</option>
+            <option value="asc">Nilai Terendah</option>
+            <option value="desc">Nilai Tertinggi</option>
+            <option value="az">Nama A-Z</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table-nilai" id="tableNilai">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Materi</th>
+                <th>Nilai</th>
+                <th>Kategori</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td class="placeholder">[Nama Materi 1]</td><td data-nilai="85">85</td><td></td></tr>
+              <tr><td>2</td><td class="placeholder">[Nama Materi 2]</td><td data-nilai="92">92</td><td></td></tr>
+              <tr><td>3</td><td class="placeholder">[Nama Materi 3]</td><td data-nilai="78">78</td><td></td></tr>
+              <tr><td>4</td><td class="placeholder">[Nama Materi 4]</td><td data-nilai="88">88</td><td></td></tr>
+              <tr><td>5</td><td class="placeholder">[Nama Materi 5]</td><td data-nilai="95">95</td><td></td></tr>
+              <tr><td>6</td><td class="placeholder">[Nama Materi 6]</td><td data-nilai="70">70</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="stat-label">Rata-rata</p>
+            <p class="stat-value"><span data-counter="0" id="statAvg">0</span></p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Tertinggi</p>
+            <p class="stat-value"><span data-counter="0" id="statMax">0</span></p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Terendah</p>
+            <p class="stat-value"><span data-counter="0" id="statMin">0</span></p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Jumlah Materi</p>
+            <p class="stat-value"><span data-counter="0" id="statCount">0</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project -->
+    <section class="section section-alt reveal" id="project">
+      <div class="container">
+        <h2 class="section-title">Project Website</h2>
+        <p class="section-sub">Kumpulan project yang telah dikerjakan. Klik kartu untuk pratinjau.</p>
+        <div class="project-grid">
+          <article class="project-card" data-project="1">
+            <div class="project-thumb">&#128187;</div>
+            <h3 class="placeholder">[Nama Project 1]</h3>
+            <p class="placeholder">[Deskripsi singkat project 1, fitur unggulan, dan teknologi yang dipakai.]</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-ghost btn-preview" data-target="1">Pratinjau</button>
+              <a href="project1.html" class="btn btn-primary">Buka Project &rarr;</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-project="2">
+            <div class="project-thumb">&#127912;</div>
+            <h3 class="placeholder">[Nama Project 2]</h3>
+            <p class="placeholder">[Deskripsi singkat project 2, fitur unggulan, dan teknologi yang dipakai.]</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-ghost btn-preview" data-target="2">Pratinjau</button>
+              <a href="project2.html" class="btn btn-primary">Buka Project &rarr;</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-project="3">
+            <div class="project-thumb">&#128640;</div>
+            <h3 class="placeholder">[Nama Project 3]</h3>
+            <p class="placeholder">[Deskripsi singkat project 3, fitur unggulan, dan teknologi yang dipakai.]</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-ghost btn-preview" data-target="3">Pratinjau</button>
+              <a href="project3.html" class="btn btn-primary">Buka Project &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontak / pesan singkat -->
+    <section class="section reveal" id="pesan">
+      <div class="container narrow">
+        <h2 class="section-title">Tinggalkan Pesan</h2>
+        <p class="section-sub">Form interaktif sederhana (data hanya disimpan di browser).</p>
+        <form class="contact-form" id="contactForm">
+          <label>
+            Nama
+            <input type="text" id="cfName" required placeholder="Masukkan nama Anda" />
+          </label>
+          <label>
+            Pesan
+            <textarea id="cfMsg" rows="4" required placeholder="Tulis pesan singkat..."></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+        </form>
+        <ul class="message-list" id="messageList"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> <span class="placeholder">[Nama Siswa]</span>. Dibuat dengan HTML, CSS, JavaScript.</p>
+      <p class="footer-hint">Tip: tekan tombol panah atas/bawah, atau coba Konami Code &#11014;&#11014;&#11015;&#11015;&#11013;&#10145;&#11013;&#10145;BA</p>
+    </div>
+  </footer>
+
+  <!-- Modal Pratinjau Project -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close-modal aria-label="Tutup">&times;</button>
+      <h3 id="modalTitle">[Nama Project]</h3>
+      <p id="modalDesc" class="placeholder">[Deskripsi project]</p>
+      <a href="#" id="modalLink" class="btn btn-primary">Buka Halaman Project &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Container untuk toast -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
